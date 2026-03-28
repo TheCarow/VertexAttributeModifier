@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEditor;
 
-[FilePath("Managers/StateFile.foo", FilePathAttribute.Location.ProjectFolder)]
+[FilePath("VertexAttributeModifierData", FilePathAttribute.Location.ProjectFolder)]
 public class VertexAttributeModifier : ScriptableSingleton<VertexAttributeModifier>
 {
     public List<MeshRule> meshRules = new List<MeshRule>();
@@ -460,21 +460,9 @@ public class MeshRule
 
 public class MeshPostProcessorImporter : AssetPostprocessor
 {
-    private static VertexAttributeModifier cachedSettings;
-
-    private static VertexAttributeModifier LoadSettings()
-    {
-        if (cachedSettings != null)
-        {
-            return cachedSettings;
-        }
-
-        return VertexAttributeModifier.instance;
-    }
-    
     void OnPostprocessModel(GameObject root)
     {
-        VertexAttributeModifier vam = LoadSettings();
+        VertexAttributeModifier vam = VertexAttributeModifier.instance;
         if (vam == null)
         {
             return;
@@ -493,7 +481,5 @@ public class MeshPostProcessorImporter : AssetPostprocessor
 
             vam.ApplyModifications(mesh, matchingRule);
         }
-
-        // modelImporter.userData;
     }
 }
