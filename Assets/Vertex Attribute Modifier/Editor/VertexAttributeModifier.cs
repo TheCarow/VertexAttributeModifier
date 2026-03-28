@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEditor;
 
-[FilePath("VertexAttributeModifierData", FilePathAttribute.Location.ProjectFolder)]
+[FilePath("ProjectSettings/VertexAttributeModifierData.asset", FilePathAttribute.Location.ProjectFolder)]
 public class VertexAttributeModifier : ScriptableSingleton<VertexAttributeModifier>
 {
     public List<MeshRule> meshRules = new List<MeshRule>();
